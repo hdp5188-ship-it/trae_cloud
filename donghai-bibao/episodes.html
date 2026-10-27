@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《东海壁垒》剧集设定与分集大纲</title>
+<style>
+  :root{
+    --bg:#070b12;
+    --bg2:#0d1420;
+    --card:#111a26;
+    --line:#1e2c3e;
+    --cyan:#3fd0e0;
+    --blue:#4a9fe8;
+    --text:#d8e4ef;
+    --dim:#7f93a8;
+    --amber:#e8a84a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 20% -10%, #123048 0%, transparent 60%),
+      radial-gradient(900px 500px at 90% 10%, #0f2438 0%, transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:64px 28px 100px;}
+
+  header.hero{border-bottom:1px solid var(--line);padding-bottom:36px;margin-bottom:44px;}
+  .kicker{
+    font-size:12px;letter-spacing:.28em;color:var(--cyan);
+    text-transform:uppercase;margin-bottom:18px;font-weight:600;
+  }
+  h1{
+    font-size:44px;line-height:1.15;margin:0 0 16px;letter-spacing:.04em;
+    background:linear-gradient(100deg,#ffffff 20%,#8fd8ea 70%,#5a8fc0 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{color:var(--dim);font-size:15px;max-width:720px;}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .tag{
+    font-size:12.5px;padding:6px 14px;border-radius:999px;
+    border:1px solid var(--line);background:#0b1420;color:#9fb6cc;
+  }
+  .tag b{color:var(--cyan);font-weight:600;}
+
+  section{margin-top:56px;}
+  h2{
+    font-size:13px;letter-spacing:.22em;color:var(--cyan);
+    text-transform:uppercase;font-weight:700;margin:0 0 20px;
+    display:flex;align-items:center;gap:12px;
+  }
+  h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+  h3{font-size:19px;margin:32px 0 12px;color:#eaf3fb;font-weight:600;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:720px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:linear-gradient(160deg,#101a26 0%,#0c1420 100%);
+    border:1px solid var(--line);border-radius:12px;padding:20px 22px;
+  }
+  .card .t{font-size:13px;color:var(--cyan);font-weight:600;margin-bottom:8px;letter-spacing:.06em;}
+  .card .d{font-size:14px;color:#b6c8d8;}
+
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px;}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #17222f;}
+  th{color:var(--cyan);font-size:12px;letter-spacing:.12em;font-weight:600;text-transform:uppercase;}
+  td:first-child{color:#fff;font-weight:600;white-space:nowrap;}
+  tr:hover td{background:#0e1825;}
+
+  ol.eps{list-style:none;padding:0;margin:0;counter-reset:ep;}
+  ol.eps>li{
+    counter-increment:ep;position:relative;
+    padding:18px 20px 18px 66px;margin-bottom:10px;
+    background:#0c1420;border:1px solid var(--line);border-radius:10px;
+    transition:border-color .2s,background .2s;
+  }
+  ol.eps>li:hover{border-color:#2a4a63;background:#0e1a28;}
+  ol.eps>li::before{
+    content:counter(ep);position:absolute;left:18px;top:18px;
+    width:32px;height:32px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;color:var(--cyan);
+    background:#0a1826;border:1px solid #23445c;
+  }
+  .ep-name{font-size:16.5px;font-weight:600;color:#fff;margin-bottom:6px;}
+  .ep-body{font-size:14px;color:#a8bccd;}
+  .hook{
+    margin-top:10px;font-size:13.5px;color:var(--amber);
+    padding-left:14px;border-left:2px solid #4a3a1c;
+  }
+  .hook b{color:#f0c070;font-weight:600;}
+
+  .note{
+    margin-top:18px;padding:16px 20px;border-radius:10px;
+    background:#131a12;border:1px solid #2c3a22;font-size:13.5px;color:#b9c9a8;
+  }
+  .note b{color:#d6e8b8;}
+
+  .warn{
+    background:#1a1410;border:1px solid #3d2f1c;color:#d9c19a;
+  }
+  .warn b{color:#f0c070;}
+
+  footer{
+    margin-top:72px;padding-top:26px;border-top:1px solid var(--line);
+    font-size:12.5px;color:#4f6478;letter-spacing:.05em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Sci-Fi Micro Series · Concept Bible</div>
+    <h1>东海壁垒</h1>
+    <p class="sub">2144年，人类文明被无定形的「液相体」击溃。三面环海的上海滴水湖成为最后一道防线——人类把仅剩的一切，全部押进这个圆。</p>
+    <div class="meta">
+      <span class="tag">规格 <b>每集 60–90 秒</b></span>
+      <span class="tag">总量 <b>80–100 集</b></span>
+      <span class="tag">时间跨度 <b>2144.3 – 2147.3</b></span>
+      <span class="tag">结构 <b>五幕</b></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>核心设定</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="t">液相体 · 本体</div>
+        <div class="d">无固定形态的黑色流体，智力极高，能自动学会人类语言并模拟人类样貌。本身没有战斗力，永远密封在载具舱内，靠操控机器作战。一旦舱体破裂进水，接触水面即退相干、溃散。</div>
+      </div>
+      <div class="card">
+        <div class="t">液相体 · 机器</div>
+        <div class="d">分裂出的银色小机器（硬币大小，接入即夺控）与巨型战争机器。不怕水，可潜水、可穿越水域。真正的死穴不是水，而是「壳被打破」。</div>
+      </div>
+      <div class="card">
+        <div class="t">东海壁垒 · 结构</div>
+        <div class="d">湖心议会塔 + 太空电梯基座；向外三圈环形城市带（内环居住、中环工业军事、外环防御）；外圈多组垂直通道直连轨道空间站；整座城市被巨型能量防御罩包裹。</div>
+      </div>
+      <div class="card">
+        <div class="t">地球 · 外部世界</div>
+        <div class="d">护盾之外是工业坟场：液相体建造的巨大黑色汲取管道掠夺地球物资，天空灰暗压抑，城市面目全非。</div>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <b>战斗公式（已修正）：</b>人类 = 破舱（超高压海水炮 / 深水水雷 / 潜艇伏击）→ 灌水 → 杀本体；机器只是壳。滴水湖的价值不是「水挡住敌人」，而是让本体永远不敢把壳开到你面前，并把战场锁死在可被击破的机器上。
+    </div>
+  </section>
+
+  <section>
+    <h2>五幕结构</h2>
+    <table>
+      <thead><tr><th>幕</th><th>集数</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>第一幕 · 世界陷落</td><td>1–20</td><td>黑水坠落、多点着陆、机器夺控、各国沦陷、发现怕水、决议筑城</td></tr>
+        <tr><td>第二幕 · 筑城</td><td>21–35</td><td>世界会议、滴水湖建壁垒、三圈城墙升起、护盾点亮、阶级矛盾初现</td></tr>
+        <tr><td>第三幕 · 裂痕与相遇</td><td>36–55</td><td>内斗、捕获溯、反间计、苏晓×溯感情线、亲情线</td></tr>
+        <tr><td>第四幕 · 反击</td><td>56–70</td><td>水之刃武器、环岛反击战、大捷、敌方后援枯竭</td></tr>
+        <tr><td>第五幕 · 终战</td><td>71–90</td><td>灰色备战（亲情爱情友情）、黑潮总攻、溯牺牲、胜利</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>第一幕 · 世界陷落（第 1–20 集）</h2>
+    <p class="sub" style="margin-bottom:22px;">每集一个冲突、一个视觉爆点、一个悬念钩子。</p>
+
+    <ol class="eps">
+      <li>
+        <div class="ep-name">黑色来客</div>
+        <div class="ep-body">国际空间站警报：黑色物体脱离月球背面变轨，多国新闻连爆「不明物体进入大气层」。苏晓在实验室注意到转播画面——物体没有燃烧尾迹，它在自己减速。</div>
+        <div class="hook"><b>钩子：</b>屏幕上的黑点分裂成十几个光点，四散飞向地球不同方向。</div>
+      </li>
+      <li>
+        <div class="ep-name">多点坠落</div>
+        <div class="ep-body">48 小时内全球十几处坠落：北太平洋、戈壁、西伯利亚、亚马逊、撒哈拉……每处都没有陨石坑，黑水摊平渗入后静止。首支侦察队前往撒哈拉，回传最后一帧：黑水表面泛起涟漪，全队失联。</div>
+        <div class="hook"><b>钩子：</b>夜幕降临，卫星云图上所有黑点同时开始闪烁。</div>
+      </li>
+      <li>
+        <div class="ep-name">虫群</div>
+        <div class="ep-body">黑水苏醒，分裂出硬币大小的银色小机器，沿下水道和电缆如水银般蔓延。城市里汽车一辆接一辆自己启动。</div>
+        <div class="hook"><b>钩子：</b>某条街道上，上千辆无人驾驶车同时亮起车灯，整齐调头。</div>
+      </li>
+      <li>
+        <div class="ep-name">失控的文明</div>
+        <div class="ep-body">小机器「接入即夺控」：车队冲入难民车流、工程机械攻击主人、军用无人机掉头瞄准自己人。林铮的部队紧急出动，机枪扫过虫群——打散的黑水重新聚合。人类发现：普通的水对机器完全无效，只有电流加水复合攻击才有杀伤，但城市电网已被夺控。</div>
+        <div class="hook"><b>钩子：</b>林铮看着自己失灵的装甲腕表，冷汗下来了——军方所有装备都是联网的。</div>
+      </li>
+      <li>
+        <div class="ep-name">上海不眠夜</div>
+        <div class="ep-body">苏晓带弟弟苏阳、孤儿小雨撤离小区。高架上被劫持的车流如黑色瀑布倾泻，林铮率残部用非联网的老式装备打开一条通路。</div>
+        <div class="hook"><b>钩子：</b>后视镜里，整个上海的灯光开始成片熄灭——不是断电，是所有光源都被虫群接管。</div>
+      </li>
+      <li>
+        <div class="ep-name">各自的沦陷（上）</div>
+        <div class="ep-body">同一夜：北美防空司令部发现自己发射的拦截弹全部悬停在发射井上方；欧洲电网反向过载，城市在雪花中陷入黑暗。人类最强的防御成了别人的武器。</div>
+        <div class="hook"><b>钩子：</b>五角大楼的画面里，一名军官缓缓抬起头——瞳孔是银色的。</div>
+      </li>
+      <li>
+        <div class="ep-name">各自的沦陷（下）</div>
+        <div class="ep-body">液相体开始模拟人类样貌渗透指挥链，军队「自己人打自己人」。马库斯在莫斯科废墟下救出幸存者，用最原始的铜线扳手启动了一台老柴油机——没有芯片，夺不走。</div>
+        <div class="hook"><b>钩子：</b>黑暗中传来一个「孩子」的哭声，马库斯举灯照去——那张脸太完美了，完美得没有一丝颤抖。</div>
+      </li>
+      <li>
+        <div class="ep-name">非洲最后一战</div>
+        <div class="ep-body">河流挡不住不怕水的机器，非洲仍在失守。但艾琳娜在前线战地医院记录到一个关键战例：一台战争机器被激流冲翻、舱体破裂进水，藏在里面的本体接触水后当场溃散。</div>
+        <div class="hook"><b>钩子：</b>她把这帧录像上传，标题只有一行——「不必打赢机器，只要让它开膛」。</div>
+      </li>
+      <li>
+        <div class="ep-name">汇聚</div>
+        <div class="ep-body">撒哈拉、西伯利亚、太平洋的黑水本体在机器护送下，向同一片海域定向行军，跨越大陆的队伍如黑色河流。各国首脑紧急会议，无人理解它们要做什么。</div>
+        <div class="hook"><b>钩子：</b>三支黑色洪流在海面相触的瞬间，全球地震仪同时跳动。</div>
+      </li>
+      <li>
+        <div class="ep-name">海底之城</div>
+        <div class="ep-body">机器大军以惊人速度堆积重组，从海床拔起一座黑色塔状基地，表面管道交错。人类潜艇抵近侦察，画面里：塔身缝隙渗出的黑色流体一接触海水就剧烈收缩——本体从不裸露，全程密封在耐压舱内由机器护送。</div>
+        <div class="hook"><b>钩子：</b>基地顶端亮起一道环形蓝光——传送门，它要开门了。</div>
+      </li>
+      <li>
+        <div class="ep-name">母舰降临</div>
+        <div class="ep-body">环形传送门完全展开，巨型液相体母舰鱼贯而出。最中央的母舰最深处是密封核心舱，一团无法测定形态的暗色流体缓缓涌动——本体，在看地球。</div>
+        <div class="hook"><b>钩子：</b>从太空看，全球十几个着陆点同时升起黑色光柱，第二波传送开始。</div>
+      </li>
+      <li>
+        <div class="ep-name">至暗 72 小时</div>
+        <div class="ep-body">第二波降临：更小的投放舱精准砸向各国军事基地。72 小时内，主要国家相继宣布失去国土控制权。苏晓一行随难民潮挤上最后一班离沪列车，苏阳回望——上海天际线被黑雾吞没。</div>
+        <div class="hook"><b>钩子：</b>列车广播突然用一种刚刚学会的、字正腔圆的中文响起：「请勿离开座位。」</div>
+      </li>
+      <li>
+        <div class="ep-name">撤向东方</div>
+        <div class="ep-body">车厢尽头一个「乘务员」抬起头，眼睛是银色的。千钧一发，列车紧急制动，人群破窗逃入雨夜。艾琳娜在混乱中接管了伤员队伍。</div>
+        <div class="hook"><b>钩子：</b>远方，仅存的几个大国军队正在向同一坐标集结——中国·上海临港。</div>
+      </li>
+      <li>
+        <div class="ep-name">最后的大陆</div>
+        <div class="ep-body">中国成为唯一还能组织有效抵抗的大陆：内陆纵深、完整工业、未被渗透的独立电网。世界幸存政府代表陆续抵达。</div>
+        <div class="hook"><b>钩子：</b>军事会议上，一位将军摊开卫星图——全球黑点连成一张网，而网的唯一空白处，是滴水湖。</div>
+      </li>
+      <li>
+        <div class="ep-name">水的答案</div>
+        <div class="ep-body">苏晓被紧急征召分析样本，得出两个结论：本体怕水——这是唯一能真正伤害它的方式，但必须先打破它的壳；机器不怕水——水屏障挡不住机器大军。所以滴水湖的意义不是「泼水退敌」，而是把战争锁死在可被击破的机器上。</div>
+        <div class="hook"><b>钩子：</b>报告最后一页，她写下一行字——「水杀不死它的兵，但能淹死它的将。」</div>
+      </li>
+      <li>
+        <div class="ep-name">三面环海</div>
+        <div class="ep-body">军方推演：内陆防线逐一失守，唯一难以被地面虫群完全包围的，是三面环海的滴水湖区域。真正的价值有三：本体若亲临，载具必须长途穿越大海，随时可能破舱，它不敢冒险；环海让人类能无限制造破舱武器（水雷、超高压海水炮、潜艇伏击）；走海路的机器受海水高压与人类舰艇双重损耗。</div>
+        <div class="hook"><b>钩子：</b>林铮提出疯狂方案——放弃全部国土，把人类最后的力量全部押进一个圆。各国代表沉默良久，第一个举手的是失去整个国家的代表。</div>
+      </li>
+      <li>
+        <div class="ep-name">世界会议</div>
+        <div class="ep-body">湖心塔内，世界议会紧急召开。争论、哭喊、拳头——最终全票通过「东海壁垒」决议。</div>
+        <div class="hook"><b>钩子：</b>散会后，苏晓独自望向窗外的滴水湖，湖面倒映着远处海面上缓缓逼近的黑线。</div>
+      </li>
+      <li>
+        <div class="ep-name">迁徙</div>
+        <div class="ep-body">人类史上最大规模的迁徙：废土上的幸存者、残存的舰队与车队、各国工程师与士兵，从全球涌向上海临港。马库斯护送一整船难民靠岸，一眼看到人群中抱着孩子的艾琳娜。</div>
+        <div class="hook"><b>钩子：</b>城市边缘，第一台液相体巨型战争机器的地平线剪影出现——追兵到了。</div>
+      </li>
+      <li>
+        <div class="ep-name">筑城</div>
+        <div class="ep-body">壁垒工程全线开工：三圈高墙、能量护盾、太空电梯、轨道空间站同步建造。林铮就任防卫军总司令，在工地上发布命令：十天，墙必须立起来。</div>
+        <div class="hook"><b>钩子：</b>工程师报告，外圈地基下方探测到异物——虫群比预想的先到了。</div>
+      </li>
+      <li>
+        <div class="ep-name">第一道光（第一幕终）</div>
+        <div class="ep-body">虫群夜袭工地，抢建进度危在旦夕。林铮亲率第一支机甲小队用超高压海水炮迎战——目标不是打穿装甲，而是击穿、灌水。第一炮打穿一台虫群机械，流出的黑色液体在雨中抽搐消失，人类第一次知道「它们怕什么」。黎明时分，护盾首次点亮，太空电梯轿厢同步升空。</div>
+        <div class="hook"><b>钩子：</b>护盾外的黑水没有撤退，而是开始堆积——它们在建自己的东西；而护盾内，人群为争夺内环居住权爆发了第一场斗殴。</div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>待细化</h2>
+    <div class="grid">
+      <div class="card"><div class="t">第二幕 21–35</div><div class="d">筑城完成后的阶级撕裂、资源分配、模拟者渗透与「水压识别门」的诞生。</div></div>
+      <div class="card"><div class="t">第三幕 36–55</div><div class="d">捕获溯、审讯与信任建立、苏晓×溯的感情线、苏阳与小雨的亲情线、液相体反间计政变。</div></div>
+      <div class="card"><div class="t">第四幕 56–70</div><div class="d">水之刃武器量产、环岛反击战、炸毁母体管道、敌方后援枯竭。</div></div>
+      <div class="card"><div class="t">第五幕 71–90</div><div class="d">灰色备战期的婚礼与折纸船、黑潮总攻、溯逆向入侵母舰自毁、溯光出生与黎明。</div></div>
+    </div>
+  </section>
+
+  <footer>
+    《东海壁垒》剧集设定与分集大纲 · 第一幕 20 集完整分场 · 设定版本：液相体破舱逻辑修订版
+  </footer>
+
+</div>
+</body>
+</html>
