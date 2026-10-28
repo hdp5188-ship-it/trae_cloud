@@ -23,8 +23,9 @@ IMG_WIDTH = 1080
 JPEG_QUALITY = 82
 MAX_RETRY = 12
 
-TITLE_BYTES = 64      # title 按 UTF-8 字节限
-DIGEST_BYTES = 120    # digest 实测：96 字节过、180 字节拒，取 120 保守值
+TITLE_CHARS = 32      # title 总长度不超过 32 个字（按字符数，非字节）
+AUTHOR_CHARS = 16     # author 不超过 16 个字
+DIGEST_CHARS = 120    # digest 不超过 120 个字
 
 
 def die(msg, code=None):
@@ -38,9 +39,9 @@ def note(errcode, errmsg):
     if errcode == 40001:
         return "access_token 无效或过期，重新执行 token。"
     if errcode == 45003:
-        return f"title 超长：{TITLE_BYTES} 字节上限（中文约 {TITLE_BYTES // 3} 字）。"
+        return f"title 超长：上限 {TITLE_CHARS} 个字。"
     if errcode == 45004:
-        return f"digest 超长：{DIGEST_BYTES} 字节上限（中文约 {DIGEST_BYTES // 3} 字）。"
+        return f"digest 超长：上限 {DIGEST_CHARS} 个字。"
     if errcode == 45110:
         return "author 字段异常，用空值即可。"
     if errcode == 45064:
@@ -106,13 +107,17 @@ def get_token():
     return tok
 
 
-def check_sizes(title, digest):
-    t, d = len(title.encode()), len(digest.encode())
-    if t > TITLE_BYTES:
-        die(f"标题 {t} 字节超限（上限 {TITLE_BYTES}，约 {TITLE_BYTES // 3} 个中文）")
-    if d > DIGEST_BYTES:
-        die(f"摘要 {d} 字节超限（上限 {DIGEST_BYTES}，约 {DIGEST_BYTES // 3} 个中文）")
-    print(f"[OK] 标题 {t}/{TITLE_BYTES} 字节 · 摘要 {d}/{DIGEST_BYTES} 字节")
+def check_sizes(title, author, digest):
+    """官方按「字数」校验，前提是没有 Unicode 转义（见文件头说明）。"""
+    t, a, d = len(title), len(author), len(digest)
+    if t > TITLE_CHARS:
+        die(f"标题 {t} 字超限（上限 {TITLE_CHARS}）")
+    if a > AUTHOR_CHARS:
+        die(f"作者 {a} 字超限（上限 {AUTHOR_CHARS}）")
+    if d > DIGEST_CHARS:
+        die(f"摘要 {d} 字超限（上限 {DIGEST_CHARS}）")
+    print(f"[OK] 标题 {t}/{TITLE_CHARS} · 作者 {a}/{AUTHOR_CHARS} "
+          f"· 摘要 {d}/{DIGEST_CHARS} 字")
 
 
 def shrink(data):
@@ -175,7 +180,7 @@ def main():
         print(f"[OK] 素材映射 -> {args.out}")
 
     elif args.cmd == "draft":
-        check_sizes(args.title, args.digest)
+        check_sizes(args.title, args.author, args.digest)
         tok = get_token()
         mapping = json.load(open(args.mapfile, encoding="utf-8"))
         content = open(args.body, encoding="utf-8").read()
