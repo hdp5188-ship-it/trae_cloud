@@ -28,7 +28,7 @@ BODY_IMG_MAP = [
     "assets/nanhui-line-viaduct.jpg",
     "assets/nanhui-line-girder.jpg",
 ]
-COVER = os.path.join(ASSETS, "dishui-lake-aerial.jpg")
+COVER = os.path.join(ASSETS, "nanhui-train-front.jpg")
 
 
 def log(msg):
