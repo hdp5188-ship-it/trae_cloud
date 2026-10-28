@@ -1,0 +1,12 @@
+[2026-10-28 10:08:42] token 获取成功
+[2026-10-28 10:08:44] 封面上传成功 media_id=7luZ_Flzu4bW5LGxvgMY...
+[2026-10-28 10:08:45] 正文图已替换: assets/nanhui-line-testrun.jpg
+[2026-10-28 10:08:45] 正文图已替换: assets/nanhui-line-viaduct.jpg
+[2026-10-28 10:08:46] 正文图已替换: assets/nanhui-line-girder.jpg
+[2026-10-28 10:08:46] 建草稿失败: {'errcode': 53402, 'errmsg': '封面裁剪失败，请检查裁剪参数后重试 hint: [6vAxYa032636-1] rid: 6ae1592e-6eb3b594-74e3e8cd'}
+[2026-10-28 10:08:58] token 获取成功
+[2026-10-28 10:09:00] 封面上传成功 media_id=7luZ_Flzu4bW5LGxvgMY...
+[2026-10-28 10:09:01] 正文图已替换: assets/nanhui-line-testrun.jpg
+[2026-10-28 10:09:01] 正文图已替换: assets/nanhui-line-viaduct.jpg
+[2026-10-28 10:09:02] 正文图已替换: assets/nanhui-line-girder.jpg
+[2026-10-28 10:09:05] 草稿创建成功 media_id=7luZ_Flzu4bW5LGxvgMYosi3ZZhhgsAqcAR1EwN9B32EC-lVgNQPSvqt0ANHFoxq
