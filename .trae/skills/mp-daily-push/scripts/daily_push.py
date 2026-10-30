@@ -114,12 +114,30 @@ def upload_news_image(token, file_path):
     logging.info("news_image %s → %s", os.path.basename(file_path), wx_url[:70])
     return wx_url
 
+def _truncate_for_wx(s: str, max_bytes: int = 12) -> str:
+    """WeChat MP API hard limits — author = 12 bytes, title = 64 bytes, digest = 120 bytes."""
+    if not s:
+        return ''
+    b = s.encode('utf-8')
+    if len(b) <= max_bytes:
+        return s
+    # cut at last full multi-byte boundary
+    while len(b) > max_bytes:
+        b = b[:-1]
+        if len(b) % 1 == 0:
+            try:
+                b.decode('utf-8')
+                break
+            except UnicodeDecodeError:
+                continue
+    return b.decode('utf-8')
+
 def add_draft(token, thumb_media_id, title, author, digest, content_html):
     url = f'https://api.weixin.qq.com/cgi-bin/draft/add?access_token={token}'
     payload = {"articles": [{
-        "title": title,
-        "author": author,
-        "digest": digest,
+        "title": _truncate_for_wx(title, 64),
+        "author": _truncate_for_wx(author, 12),
+        "digest": _truncate_for_wx(digest, 120),
         "content": content_html,
         "thumb_media_id": thumb_media_id,
         "need_open_comment": 1,
