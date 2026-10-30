@@ -1,0 +1,59 @@
+{
+  "log_dir": "/workspace/wechat-articles/logs",
+  "article_root": "/workspace/wechat-articles",
+
+  "wechat": {
+    "appid": "wx838dc5b94781cc74",
+    "appsecret": "6cd4eac73b78a08af743e8f56f5856d5",
+    "author": "临港观察"
+  },
+
+  "llm": {
+    "provider": "deepseek",
+    "api_key": "YOUR_LLM_API_KEY_HERE",
+    "model": "deepseek-chat",
+    "base_url": "https://api.deepseek.com/v1/chat/completions",
+    "timeout": 60
+  },
+
+  "daemon": {
+    "schedule": "08:30",
+    "area": "lingang"
+  },
+
+  "prompt_templates": {
+    "system": "你是一位资深微信公众号撰稿人，深耕{AREA}领域。风格：第一人称在场、接地气、长短句交错、一两句一段、不堆过渡词、避免 AI 味。",
+    "user": "请以【{TOPIC}】为题写一篇微信公众号推文。\n\n要求：\n1. 标题吸引人，摘要20-30字；\n2. 正文结构：开头引入 → 3-4 个分论点 → 结尾互动引导；\n3. 正文里 2-3 处加粗/变色加粗做强调，不要泛滥；\n4. 结尾附一个实用贴士卡片（出行/时间/装备/地址等）；\n5. 所有标题用 <p style=\"...\"> 写（禁用 h1-h6）；\n6. 样式一律行内 style，扁平结构无嵌套 div；\n7. 2-3 张图片，正文里用 <img src=\"assets/xxx.jpg\" style=\"max-width:100%;width:100%;\">，图片下方用 <p style=\"...\"> 写来源；\n8. 请按以下 JSON 格式输出：\n{\"title\":\"...\", \"summary\":\"...\", \"images\":[{\"src\":\"http://...真实图片URL...\", \"caption\":\"图片说明\"}], \"body_html\":\"完整HTML正文\"}"
+  },
+
+  "area_config": {
+    "lingang": {
+      "name": "临港/滴水湖",
+      "keywords": ["临港新片区", "滴水湖", "临港中心", "临港基地", "上海临港"],
+      "news_sources": [
+        "https://www.lingang.gov.cn/rss.xml",
+        "https://www.shanghai.gov.cn/nw4411/rss.xml"
+      ]
+    },
+    "esports": {
+      "name": "电竞",
+      "keywords": ["LPL", "S赛", "世界赛", "TI", "英雄联盟", "电竞"],
+      "news_sources": ["https://esports.gmw.cn/rss.htm"]
+    },
+    "sports": {
+      "name": "体育",
+      "keywords": ["中超", "CBA", "NBA", "欧冠", "世界杯", "马拉松"],
+      "news_sources": ["https://sports.xinhuanet.com/rss.xml"]
+    },
+    "tech": {
+      "name": "科技",
+      "keywords": ["人工智能", "大模型", "芯片", "半导体", "量子"],
+      "news_sources": ["https://www.36kr.com/feed"]
+    },
+    "ev": {
+      "name": "电车/新能源",
+      "keywords": ["特斯拉", "蔚来", "小鹏", "理想", "比亚迪", "新能源车"],
+      "news_sources": ["https://www.autohome.com.cn/rss.xml"]
+    }
+  }
+}
