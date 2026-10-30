@@ -105,6 +105,21 @@ def upload_thumb(token, file_path):
     logging.info("thumb uploaded → media_id=%s", mid)
     return mid
 
+def verify_image_url(url):
+    """GET the CDN url back and confirm it is a real image. WeChat URLs must keep '/0?from=appmsg'."""
+    try:
+        r = requests.get(url, timeout=15, stream=True,
+                         headers={'User-Agent': 'Mozilla/5.0'})
+        ctype = r.headers.get('content-type', '')
+        if r.status_code != 200 or not ctype.startswith('image/'):
+            logging.error("image check FAILED %s status=%s type=%s", url[:70], r.status_code, ctype)
+            return False
+        logging.info("image check OK %s (%s, %d bytes)", url[:70], ctype, len(r.content))
+        return True
+    except Exception as e:
+        logging.error("image check ERROR %s: %s", url[:70], e)
+        return False
+
 def upload_news_image(token, file_path):
     """Upload an inline image for article body, returns CDN URL usable in <img>."""
     url = f'https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token={token}'
@@ -112,6 +127,8 @@ def upload_news_image(token, file_path):
     wx_url = r.get('url')
     if not wx_url: raise RuntimeError(f"news_image upload failed: {r}")
     logging.info("news_image %s → %s", os.path.basename(file_path), wx_url[:70])
+    if not verify_image_url(wx_url):
+        raise RuntimeError(f"uploaded image not reachable: {wx_url}")
     return wx_url
 
 def _truncate_for_wx(s: str, max_bytes: int = 12) -> str:
