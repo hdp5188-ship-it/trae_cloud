@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "douyin-dl"
+version = "0.1.0"
+description = "抖音无水印视频 / 图集下载命令行工具"
+requires-python = ">=3.10"
+dependencies = ["playwright>=1.40"]
+
+[project.scripts]
+dyfetch = "douyin_dl.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/douyin_dl"]
