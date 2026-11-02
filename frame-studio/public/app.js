@@ -206,9 +206,10 @@ async function handleFiles(files) {
 }
 
 dropzone.addEventListener('click', (event) => {
-  if (event.target.closest('#clearImg')) return;
+  if (event.target === fileInput || event.target.closest('#clearImg')) return;
   fileInput.click();
 });
+fileInput.addEventListener('click', (event) => event.stopPropagation());
 fileInput.addEventListener('change', (event) => handleFiles(event.target.files));
 
 ['dragenter', 'dragover'].forEach((type) => {
