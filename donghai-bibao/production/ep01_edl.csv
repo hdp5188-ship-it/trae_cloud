@@ -1,0 +1,14 @@
+Shot,In_TC,Out_TC,Frame_In,Frame_Out,Frames,Duration_s,Transition_In,Primary_Source,Audio_Note
+S01,00:00:00:00,00:00:15:00,0,360,360,15.0,黑场0.2s淡入,kf01_radar_clean.jpg,环境底噪+警报逐层
+S02,00:00:15:00,00:00:21:00,360,504,144,6.0,硬切,kf03b_station_commander_clean.jpg,会议链路+确认
+S03,00:00:21:00,00:00:25:00,504,600,96,4.0,硬切,kf04d_launch_officer_hand_v2_clean.jpg,授权+倒计时+按钮
+S04,00:00:25:00,00:00:31:00,600,744,144,6.0,硬切,kf04a_silo_pov_v2_clean.jpg,井盖+蒸汽+点火
+S05,00:00:31:00,00:00:36:00,744,864,120,5.0,硬切,kf04b_missile_pov_v2_clean.jpg,导引头锁定+震动
+S06,00:00:36:00,00:00:41:00,864,984,120,5.0,硬切,kf04c_silo_salvo_v2_clean.jpg,多井齐射+低频
+S07,00:00:41:00,00:00:46:00,984,1104,120,5.0,硬切,kf05_launch_clean.jpg,舷窗结构+逼近
+S08,00:00:46:00,00:00:52:00,1104,1248,144,6.0,闪白硬切,kf06b_multi_impact_v2_clean.jpg,真空冲击+结构震动
+S09,00:00:52:00,00:00:56:00,1248,1344,96,4.0,硬切,kf07b_crew_cheering_wide_v3_clean.jpg,全舱欢呼
+S10,00:00:56:00,00:01:00:00,1344,1440,96,4.0,硬切,kf07a_su_xiao_false_victory_v2_clean.jpg,欢呼压低+可选台词
+S11,00:01:00:00,00:01:06:00,1440,1584,144,6.0,硬切,kf08_second_wave_v3_clean.jpg,警报+多目标锁定
+S12,00:01:06:00,00:01:11:00,1584,1704,120,5.0,硬切,kf03a_su_xiao_closeup_v2_clean.jpg,轨迹计算+上海锁定
+S13,00:01:11:00,00:01:15:00,1704,1800,96,4.0,硬切+末尾0.3s淡黑,kf10a_lin_zheng_closeup_v2_clean.jpg,雨声+警报+撤离

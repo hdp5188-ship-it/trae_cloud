@@ -49,11 +49,39 @@
 - 导弹弹头朝内，不是从黑球向外发射；
 - 镜头运动干净，没有融化或果冻感。
 
-## 前置资产
+## 前置资产状态
 
-- 苏晓、站长、林铮的角色锁定图：正面、侧面、半身、表情各一张。
-- 指挥环厅平面与屏幕布局：科学席、指挥台、发射席、视频窗位置。
-- 黑球比例图：3 公里直径与空间站、地球、发射井的对比。
-- 三套制服对照图：科研、操作员、指挥。
-- 音效清单：警报、井盖、点火、齐射、真空闪白、低频冲击、欢呼、雷达、雨夜。
-- 最终剪辑时间线：按本表 13 镜拼接，确认无 BGM、无字幕策略。
+| 资产 | 状态 | 位置/说明 |
+|---|---|---|
+| 苏晓/站长/林铮角色锁定 | 可用（关键帧替代） | 见 [ep01_character_pack.md](file:///workspace/donghai-bibao/production/ep01_character_pack.md)；正式三视图暂缓 |
+| 操作员/发射席锁定 | 可用 | 同上，含三套制服与系统色肩章 |
+| 指挥环厅平面与席位 | 文字约定 | 上层环形大厅 + 下层环桌会议区；科学席左前、指挥台中央、发射席右侧 |
+| 黑球比例与可见度 | 已出表 | 望远镜/舷窗可大，发射井与导引头 ≤8px；纯黑无边缘光 |
+| 三套制服对照 | 已出图 | `keyframes/ep01/ep01_character_sheet_v3.jpg` |
+| 逐镜提示词 | 已出 | [ep01_prompts.md](file:///workspace/donghai-bibao/production/ep01_prompts.md) |
+| 关键帧映射 | 已出 | [ep01_shotmap.md](file:///workspace/donghai-bibao/production/ep01_shotmap.md) |
+| 音效清单 | 已出清单，音频未制作 | [ep01_sfx_list.md](file:///workspace/donghai-bibao/production/ep01_sfx_list.md) |
+| 剪辑时间线 | 已出 | [ep01_edl_timeline.md](file:///workspace/donghai-bibao/production/ep01_edl_timeline.md) + [ep01_edl.csv](file:///workspace/donghai-bibao/production/ep01_edl.csv) |
+| 成片视频 | 未生成 | 测试镜头 S04/S01 前 5s/S08 尚未开始，未消耗积分 |
+
+## 配套文件
+
+| 文件 | 内容 | 用途 |
+|---|---|---|
+| [ep01_shotmap.md](file:///workspace/donghai-bibao/production/ep01_shotmap.md) | 关键帧→13 镜首帧映射、尺寸预处理、旧版禁用清单 | 生成前查首帧 |
+| [ep01_prompts.md](file:///workspace/donghai-bibao/production/ep01_prompts.md) | S01–S13 可粘贴中文提示词、失败判定、积分控制顺序 | 图生视频 |
+| [ep01_character_pack.md](file:///workspace/donghai-bibao/production/ep01_character_pack.md) | 苏晓/站长/林铮/操作员锁定、制服体系、空间方位、黑球比例 | 人物一致性 |
+| [ep01_sfx_list.md](file:///workspace/donghai-bibao/production/ep01_sfx_list.md) | 75 秒逐段时间码音效、分轨、混音规则 | 声音制作 |
+| [ep01_edl_timeline.md](file:///workspace/donghai-bibao/production/ep01_edl_timeline.md) | 13 镜入出点、帧号、转场、导出设置 | 剪辑 |
+| [ep01_edl.csv](file:///workspace/donghai-bibao/production/ep01_edl.csv) | 同上，表格式 | 导入剪辑软件 |
+
+## 执行顺序（省积分版）
+
+1. **S04**：5s / 480p / 1 图。验证井盖、导弹方向、准星黑点。
+2. **S01 前 5s**：5s / 480p / 2 图。验证环厅、苏晓发型制服、推镜。
+3. **S08**：5s / 480p / 1 图。验证命中方向、白光、碎片。
+4. **S06**：5s / 480p / 1 图。验证多井齐射。
+5. 上述四镜通过后，再按 S05 → S07 → S11 → S12 → S02 → S03 → S09 → S10 → S13 的顺序补。
+6. 所有镜头 480p 版先剪一遍 75 秒离线片；确认节奏后再决定是否升级 720p/1080p。
+
+**停止规则**：同一提示词连续 2 次失败，停止抽卡，改拆镜头或改首帧，不再叠加次数。
