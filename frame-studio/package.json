@@ -1,0 +1,10 @@
+{
+  "name": "frame-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Image + prompt -> consecutive frames",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

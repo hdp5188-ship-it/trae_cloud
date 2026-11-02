@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frame Studio · 连续帧生成器</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◧</span>
+      <span class="brand-name">FRAME STUDIO</span>
+      <span class="brand-sub">连续帧生成器</span>
+    </div>
+    <div class="top-actions">
+      <span class="status-pill" id="statusPill">未载入素材</span>
+      <button class="ghost small" id="helpBtn">使用说明</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="block">
+        <div class="block-head"><span class="step">01</span>参考图</div>
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" hidden />
+          <div class="drop-empty" id="dropEmpty">
+            <div class="drop-icon">+</div>
+            <strong>拖入图片或点击上传</strong>
+            <span>JPG / PNG / WebP</span>
+          </div>
+          <div class="drop-filled" id="dropFilled" hidden>
+            <img id="thumb" alt="参考图预览" />
+            <div class="file-meta">
+              <span id="fileName">image.jpg</span>
+              <button class="link" id="clearImg" type="button">移除</button>
+            </div>
+          </div>
+        </div>
+        <button class="ghost w-full" id="demoBtn" type="button">载入示例图</button>
+      </section>
+
+      <section class="block">
+        <div class="block-head"><span class="step">02</span>提示词</div>
+        <textarea id="prompt" rows="4" placeholder="例如：镜头缓慢推近，夕阳暖光，空气中有漂浮的光尘，电影感"></textarea>
+        <div class="sub-label">识别到的效果</div>
+        <div class="chips" id="chips"><span class="chip muted">等待提示词</span></div>
+        <div class="quick" id="quickChips"></div>
+      </section>
+
+      <section class="block">
+        <div class="block-head"><span class="step">03</span>生成参数</div>
+        <div class="form-grid">
+          <label class="field">
+            <span>分辨率</span>
+            <select id="resolution">
+              <option value="1280x720">1280 × 720 · 16:9</option>
+              <option value="1920x1080">1920 × 1080 · 16:9</option>
+              <option value="1080x1080">1080 × 1080 · 1:1</option>
+              <option value="720x1280">720 × 1280 · 9:16</option>
+              <option value="1080x1440">1080 × 1440 · 3:4</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>帧率</span>
+            <select id="fps">
+              <option value="8">8 fps</option>
+              <option value="12" selected>12 fps</option>
+              <option value="24">24 fps</option>
+              <option value="30">30 fps</option>
+            </select>
+          </label>
+        </div>
+        <label class="range-row">
+          <span>帧数 <b id="frameVal">48</b></span>
+          <input type="range" id="frameCount" min="8" max="120" step="1" value="48" />
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="loop" checked />
+          <span>循环模式（首尾无缝衔接）</span>
+        </label>
+        <button class="primary w-full" id="generateBtn" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18l15-9z"/></svg>
+          生成连续帧
+        </button>
+      </section>
+
+      <section class="block">
+        <details id="aiDetails">
+          <summary><span class="summary-title">AI 关键帧模式</span><span class="tag-ai">双模式</span></summary>
+          <div class="ai-body">
+            <p class="ai-note">填入任意 OpenAI 兼容的图像编辑接口后，AI 先产出关键帧，再由本地引擎插值成连续帧。密钥只保存在本机浏览器，并经本地服务转发。</p>
+            <div class="form-grid">
+              <label class="field">
+                <span>接口类型</span>
+                <select id="aiProvider">
+                  <option value="openai">OpenAI 兼容 /images/edits</option>
+                  <option value="custom">自定义 JSON 接口</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>关键帧数量</span>
+                <select id="aiCount">
+                  <option value="3">3 帧</option>
+                  <option value="4" selected>4 帧</option>
+                  <option value="5">5 帧</option>
+                  <option value="6">6 帧</option>
+                </select>
+              </label>
+            </div>
+            <label class="field"><span>Base URL</span><input type="text" id="aiBaseUrl" placeholder="https://api.openai.com/v1" autocomplete="off" /></label>
+            <label class="field"><span>API Key</span><input type="password" id="aiKey" placeholder="sk-..." autocomplete="off" /></label>
+            <label class="field"><span>模型</span><input type="text" id="aiModel" placeholder="gpt-image-1" autocomplete="off" /></label>
+            <label class="field"><span>尺寸参数（可选）</span><input type="text" id="aiSize" placeholder="例如 1024x1024" autocomplete="off" /></label>
+            <button class="secondary w-full" id="aiBtn" type="button">AI 生成关键帧</button>
+          </div>
+        </details>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="stage-panel">
+        <div class="stage" id="stage">
+          <canvas id="canvas" width="1280" height="720"></canvas>
+          <div class="stage-empty" id="stageEmpty">
+            <div class="frame-icon"><span></span><span></span><span></span></div>
+            <strong>等待参考图</strong>
+            <span>上传图片并写下提示词，即可生成连续帧</span>
+          </div>
+          <div class="stage-badge" id="modeBadge" hidden>本地生成</div>
+        </div>
+      </div>
+
+      <div class="transport">
+        <button class="icon-btn" id="playBtn" type="button" title="播放 / 暂停">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path id="playIcon" d="M8 5v14l11-7z"/></svg>
+        </button>
+        <span class="timecode" id="timecode">00 / 00</span>
+        <input type="range" id="scrub" min="0" max="47" value="0" />
+        <span class="duration" id="duration">0.00s</span>
+      </div>
+
+      <div class="export-panel">
+        <div class="export-head">
+          <span>导出</span>
+          <span class="export-hint" id="exportHint">生成连续帧后可导出</span>
+        </div>
+        <div class="export-btns" id="exportBtns">
+          <button type="button" data-format="gif"><b>GIF</b><small>循环动图</small></button>
+          <button type="button" data-format="zip"><b>PNG 序列</b><small>ZIP 打包</small></button>
+          <button type="button" data-format="webm"><b>WebM</b><small>视频</small></button>
+          <button type="button" data-format="mp4"><b>MP4</b><small>视频</small></button>
+          <button type="button" data-format="sheet"><b>精灵图</b><small>Sprite Sheet</small></button>
+        </div>
+        <div class="progress" id="progressWrap" hidden>
+          <div class="bar"><i id="progressBar"></i></div>
+          <span id="progressText">准备中…</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <dialog id="helpDialog">
+    <div class="dialog-head"><strong>使用说明</strong><button class="link" id="closeHelp">关闭</button></div>
+    <ol>
+      <li>上传一张参考图，写下你想要的画面变化，例如「缓慢推近，暖色夕阳，漂浮光尘」。</li>
+      <li>提示词中的镜头、天气、光效、调色关键词会被自动识别，并显示为标签。</li>
+      <li>调整分辨率、帧数、帧率后点击「生成连续帧」，可拖动时间轴逐帧检查。</li>
+      <li>导出 GIF、PNG 帧序列 ZIP、WebM/MP4 视频或精灵图。视频与 GIF 由本地 ffmpeg 编码，ZIP 需要系统安装 zip 命令。</li>
+      <li>进阶：在「AI 关键帧模式」中填入兼容接口，AI 生成关键帧后由本地引擎插值补帧。</li>
+    </ol>
+  </dialog>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
