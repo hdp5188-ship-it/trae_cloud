@@ -8,7 +8,7 @@ const fileInput = $('#fileInput');
 const dropzone = $('#dropzone');
 const dropEmpty = $('#dropEmpty');
 const dropFilled = $('#dropFilled');
-const thumb = $('#thumb');
+const refGrid = $('#refGrid');
 const fileNameEl = $('#fileName');
 const promptEl = $('#prompt');
 const chipsEl = $('#chips');
@@ -46,8 +46,10 @@ const aiDetails = $('#aiDetails');
 
 const PLAY_ICON = 'M8 5v14l11-7z';
 const PAUSE_ICON = 'M6 5h4v14H6zM14 5h4v14h-4z';
+const MAX_REFS = 8;
 
 const state = {
+  images: [],
   image: null,
   imageURL: null,
   imageName: '',
@@ -154,27 +156,81 @@ function applyPromptToRenderer(parsed) {
 
 /* ---------------- image loading ---------------- */
 
-function setImage(dataURL, name) {
-  const img = new Image();
-  img.onload = () => {
-    state.image = img;
-    state.imageURL = dataURL;
-    state.imageName = name || 'image';
-    state.keyframes = null;
-    state.mode = 'local';
-    thumb.src = dataURL;
-    dropEmpty.hidden = true;
-    dropFilled.hidden = false;
-    fileNameEl.textContent = name || 'image';
-    if (!promptEl.value.trim()) {
-      promptEl.value = QUICK_PRESETS[0].text;
-      renderChips();
-    }
-    generate(true);
-    toast('参考图已载入');
-  };
-  img.onerror = () => toast('图片解码失败，请换一张试试', true);
-  img.src = dataURL;
+function decodeImage(dataURL) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error('图片解码失败'));
+    img.src = dataURL;
+  });
+}
+
+function syncPrimary() {
+  const first = state.images[0];
+  state.image = first ? first.img : null;
+  state.imageURL = first ? first.dataURL : null;
+  state.imageName = first ? first.name : '';
+}
+
+function renderRefs() {
+  refGrid.innerHTML = '';
+  refGrid.dataset.count = String(state.images.length);
+  state.images.forEach((ref, index) => {
+    const cell = document.createElement('div');
+    cell.className = 'ref-item';
+
+    const img = document.createElement('img');
+    img.src = ref.dataURL;
+    img.alt = ref.name;
+
+    const badge = document.createElement('span');
+    badge.className = 'ref-index';
+    badge.textContent = String(index + 1);
+
+    const del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'ref-del';
+    del.dataset.refDel = String(index);
+    del.title = '移除这张';
+    del.setAttribute('aria-label', `移除第 ${index + 1} 张参考图`);
+    del.textContent = '×';
+
+    cell.append(img, badge, del);
+    refGrid.appendChild(cell);
+  });
+  fileNameEl.textContent = state.images.length > 1
+    ? `${state.images.length} 张 · 首张为主参考`
+    : '1 张参考图';
+}
+
+async function addRefs(items, { replace = false } = {}) {
+  const decoded = [];
+  for (const item of items) {
+    try {
+      decoded.push({ ...item, img: await decodeImage(item.dataURL) });
+    } catch { /* 跳过无法解码的图片 */ }
+  }
+  if (!decoded.length) {
+    toast('图片解码失败，请换一张试试', true);
+    return;
+  }
+
+  const merged = replace ? decoded : [...state.images, ...decoded];
+  if (merged.length > MAX_REFS) toast(`最多 ${MAX_REFS} 张参考图，多余的已忽略`, true);
+  state.images = merged.slice(0, MAX_REFS);
+  state.keyframes = null;
+  state.mode = 'local';
+  syncPrimary();
+  renderRefs();
+  dropEmpty.hidden = true;
+  dropFilled.hidden = false;
+
+  if (!promptEl.value.trim()) {
+    promptEl.value = QUICK_PRESETS[0].text;
+    renderChips();
+  }
+  generate(true);
+  toast(state.images.length > 1 ? `已载入 ${state.images.length} 张参考图` : '参考图已载入');
 }
 
 function fileToDataURL(file) {
@@ -187,26 +243,43 @@ function fileToDataURL(file) {
 }
 
 async function handleFiles(files) {
-  const file = Array.from(files || [])[0];
-  if (!file) return;
-  if (!file.type.startsWith('image/')) {
-    toast('请选择图片文件', true);
+  const list = Array.from(files || []);
+  if (!list.length) return;
+
+  const room = MAX_REFS - state.images.length;
+  if (room <= 0) {
+    toast(`最多上传 ${MAX_REFS} 张参考图`, true);
     return;
   }
-  if (file.size > 25 * 1024 * 1024) {
-    toast('图片超过 25MB，请压缩后再试', true);
-    return;
+
+  const picked = [];
+  for (const file of list) {
+    if (!file.type.startsWith('image/')) {
+      toast(`「${file.name}」不是图片，已跳过`, true);
+      continue;
+    }
+    if (file.size > 25 * 1024 * 1024) {
+      toast(`「${file.name}」超过 25MB，已跳过`, true);
+      continue;
+    }
+    if (picked.length < room) picked.push(file);
   }
+  if (list.length > room) toast(`最多 ${MAX_REFS} 张参考图，多余的已忽略`, true);
+  if (!picked.length) return;
+
   try {
-    const dataURL = await fileToDataURL(file);
-    setImage(dataURL, file.name);
+    const items = [];
+    for (const file of picked) {
+      items.push({ dataURL: await fileToDataURL(file), name: file.name });
+    }
+    await addRefs(items);
   } catch (err) {
     toast(err.message, true);
   }
 }
 
 dropzone.addEventListener('click', (event) => {
-  if (event.target === fileInput || event.target.closest('#clearImg')) return;
+  if (event.target === fileInput || event.target.closest('#addImg') || event.target.closest('.ref-del') || event.target.closest('#clearImg')) return;
   fileInput.click();
 });
 fileInput.addEventListener('click', (event) => event.stopPropagation());
@@ -226,6 +299,28 @@ fileInput.addEventListener('change', (event) => handleFiles(event.target.files))
 });
 dropzone.addEventListener('drop', (event) => handleFiles(event.dataTransfer.files));
 
+refGrid.addEventListener('click', (event) => {
+  const btn = event.target.closest('[data-ref-del]');
+  if (!btn) return;
+  event.stopPropagation();
+  state.images.splice(Number(btn.dataset.refDel), 1);
+  if (!state.images.length) {
+    resetAll();
+    return;
+  }
+  state.keyframes = null;
+  state.mode = 'local';
+  syncPrimary();
+  renderRefs();
+  generate(true);
+  toast('已移除 1 张参考图');
+});
+
+$('#addImg').addEventListener('click', (event) => {
+  event.stopPropagation();
+  fileInput.click();
+});
+
 $('#clearImg').addEventListener('click', (event) => {
   event.stopPropagation();
   resetAll();
@@ -237,7 +332,7 @@ $('#demoBtn').addEventListener('click', async () => {
     if (!res.ok) throw new Error('示例图不存在');
     const blob = await res.blob();
     const dataURL = await fileToDataURL(blob);
-    setImage(dataURL, 'demo.jpg');
+    await addRefs([{ dataURL, name: 'demo.jpg' }], { replace: true });
   } catch (err) {
     toast(err.message, true);
   }
@@ -245,10 +340,12 @@ $('#demoBtn').addEventListener('click', async () => {
 
 function resetAll() {
   stopPlayback();
+  state.images = [];
   state.image = null;
   state.imageURL = null;
   state.keyframes = null;
   state.renderer = null;
+  refGrid.innerHTML = '';
   canvas.width = 1280;
   canvas.height = 720;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -276,9 +373,10 @@ function buildRenderer() {
   }
   const parsed = readPrompt();
   const effects = parsed.ids.length ? parsed.ids : ['push'];
+  const refKeyframes = state.images.length > 1 ? state.images.map((ref) => ref.img) : null;
   state.renderer = new FrameRenderer({
     image: state.image,
-    keyframes: state.mode === 'ai' ? state.keyframes : null,
+    keyframes: state.mode === 'ai' ? state.keyframes : refKeyframes,
     width: state.width,
     height: state.height,
     effects,
@@ -304,7 +402,7 @@ function buildRenderer() {
 
 function generate(autoplay = true) {
   if (!state.image) {
-    toast('请先上传一张参考图', true);
+    toast('请先上传至少一张参考图', true);
     return;
   }
   stopPlayback();
@@ -639,7 +737,7 @@ function loadImageElement(dataURL) {
 async function runAI() {
   if (state.busy) return;
   if (!state.imageURL) {
-    toast('请先上传一张参考图', true);
+    toast('请先上传至少一张参考图', true);
     return;
   }
   const baseUrl = aiBaseUrl.value.trim();

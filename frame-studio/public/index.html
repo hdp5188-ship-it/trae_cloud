@@ -34,17 +34,20 @@
       <section class="block">
         <div class="block-head"><span class="step">01</span>参考图</div>
         <div class="dropzone" id="dropzone">
-          <input type="file" id="fileInput" accept="image/*" hidden />
+          <input type="file" id="fileInput" accept="image/*" multiple hidden />
           <div class="drop-empty" id="dropEmpty">
             <div class="drop-icon">+</div>
             <strong>拖入图片或点击上传</strong>
-            <span>JPG / PNG / WebP</span>
+            <span>JPG / PNG / WebP · 最多 8 张</span>
           </div>
           <div class="drop-filled" id="dropFilled" hidden>
-            <img id="thumb" alt="参考图预览" />
+            <div class="ref-grid" id="refGrid"></div>
             <div class="file-meta">
-              <span id="fileName">image.jpg</span>
-              <button class="link" id="clearImg" type="button">移除</button>
+              <span id="fileName">1 张参考图</span>
+              <div class="ref-actions">
+                <button class="link" id="addImg" type="button">添加</button>
+                <button class="link muted-link" id="clearImg" type="button">清空</button>
+              </div>
             </div>
           </div>
         </div>
@@ -96,7 +99,7 @@
         <details id="aiDetails">
           <summary><span class="summary-title">AI 关键帧模式</span><span class="tag-ai">双模式</span></summary>
           <div class="ai-body">
-            <p class="ai-note">填入任意 OpenAI 兼容的图像编辑接口后，AI 先产出关键帧，再由本地引擎插值成连续帧。密钥只保存在本机浏览器，并经本地服务转发。</p>
+            <p class="ai-note">填入任意 OpenAI 兼容的图像编辑接口后，AI 先产出关键帧，再由本地引擎插值成连续帧。密钥只保存在本机浏览器，并经本地服务转发。多张参考图时，AI 使用第 1 张作为基准图；本地模式会在多张图之间平滑过渡。</p>
             <div class="form-grid">
               <label class="field">
                 <span>接口类型</span>
