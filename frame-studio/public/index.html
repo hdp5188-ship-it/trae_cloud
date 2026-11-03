@@ -88,9 +88,10 @@
           </label>
         </div>
         <label class="range-row">
-          <span>帧数 <b id="frameVal">48</b></span>
-          <input type="range" id="frameCount" min="8" max="120" step="1" value="48" />
+          <span>时长 <b id="durVal">4.0</b> s</span>
+          <input type="range" id="durationSec" min="1" max="15" step="0.5" value="4" />
         </label>
+        <div class="timing-note">共 <b id="frameVal">48</b> 帧 · 自动按帧率换算，上限 400 帧</div>
         <label class="switch">
           <input type="checkbox" id="loop" checked />
           <span>循环模式（首尾无缝衔接）</span>
