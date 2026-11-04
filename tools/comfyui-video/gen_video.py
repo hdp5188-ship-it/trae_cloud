@@ -6,8 +6,8 @@
   python tools/comfyui-video/gen_video.py --workflow minimax_h3_z0901 \
       --prompt "..." --duration 5 --resolution "768p竖(768*1344)"
 
-默认工作流 minimax_h3_lightx2v_v5（H3 多图参考生视频），未指定分辨率时自动选
-最便宜的 480p 档（40 积分/次，错峰 30）。参考图用 --image 传，可重复。
+默认工作流 minimax_h3_lightx2v_v5_15s（H3 多图生视频，最长 15 秒），未指定分辨率时
+自动选最便宜的 480p 档（40 积分/次，错峰 30）。参考图用 --image 传，可重复。
 
 配置读取同目录 .env:
   COMFYUI_API_BASE=https://autodl.art
@@ -102,7 +102,7 @@ def download(url, dest):
 def main():
     load_env(os.path.join(HERE, ".env"))
     p = argparse.ArgumentParser()
-    p.add_argument("--workflow", default="minimax_h3_lightx2v_v5", help="工作流 uuid")
+    p.add_argument("--workflow", default="minimax_h3_lightx2v_v5_15s", help="工作流 uuid")
     p.add_argument("--prompt", required=True)
     p.add_argument("--image", action="append", default=[], metavar="PATH",
                    help="参考图，可重复，按输入规则里的图片字段顺序填入")
