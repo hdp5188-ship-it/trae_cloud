@@ -6,6 +6,9 @@
   python tools/comfyui-video/gen_video.py --workflow minimax_h3_z0901 \
       --prompt "..." --duration 5 --resolution "768p竖(768*1344)"
 
+默认工作流 minimax_h3_lightx2v_no_pic（H3 文生视频），未指定分辨率时自动选
+最便宜的 480p 档（40 积分/次，错峰 30）。
+
 配置读取同目录 .env:
   COMFYUI_API_BASE=https://autodl.art
   COMFYUI_TOKEN=<在 autodl.art 创建的 ComfyUI 分组令牌>
@@ -86,7 +89,7 @@ def download(url, dest):
 def main():
     load_env(os.path.join(HERE, ".env"))
     p = argparse.ArgumentParser()
-    p.add_argument("--workflow", default="minimax_h3_z0901", help="工作流 uuid")
+    p.add_argument("--workflow", default="minimax_h3_lightx2v_no_pic", help="工作流 uuid")
     p.add_argument("--prompt", required=True)
     p.add_argument("--duration", type=int)
     p.add_argument("--resolution")
@@ -108,8 +111,14 @@ def main():
         raise SystemExit(f"读取工作流失败: {detail}")
     rules = detail["data"].get("input_rules", {})
 
+    resolution = a.resolution
+    if resolution is None:
+        options = [o["label"] for o in rules.get("resolution", {}).get("options", [])]
+        cheap = [label for label in options if label.startswith("480p")]
+        resolution = cheap[0] if cheap else None
+
     overrides = {"prompt": a.prompt}
-    for key, val in (("duration", a.duration), ("resolution", a.resolution), ("seed", a.seed)):
+    for key, val in (("duration", a.duration), ("resolution", resolution), ("seed", a.seed)):
         if val is not None:
             overrides[key] = val
     for item in a.param:
