@@ -6,15 +6,17 @@
   python tools/comfyui-video/gen_video.py --workflow minimax_h3_z0901 \
       --prompt "..." --duration 5 --resolution "768p竖(768*1344)"
 
-默认工作流 minimax_h3_lightx2v_no_pic（H3 文生视频），未指定分辨率时自动选
-最便宜的 480p 档（40 积分/次，错峰 30）。
+默认工作流 minimax_h3_lightx2v_v5（H3 多图参考生视频），未指定分辨率时自动选
+最便宜的 480p 档（40 积分/次，错峰 30）。参考图用 --image 传，可重复。
 
 配置读取同目录 .env:
   COMFYUI_API_BASE=https://autodl.art
   COMFYUI_TOKEN=<在 autodl.art 创建的 ComfyUI 分组令牌>
 """
 import argparse
+import base64
 import json
+import mimetypes
 import os
 import re
 import sys
@@ -64,6 +66,9 @@ def build_body(rules, overrides):
             body[name] = default
     body.update(overrides)
     for name, rule in rules.items():
+        if not rule.get("required") and body.get(name) in (None, ""):
+            body.pop(name, None)
+    for name, rule in rules.items():
         if rule.get("required") and body.get(name) in (None, ""):
             raise SystemExit(f"缺少必填参数: {name}")
     return body
@@ -74,6 +79,14 @@ def parse_value(text):
         return json.loads(text)
     except json.JSONDecodeError:
         return text
+
+
+def media_value(path):
+    if path.startswith(("http://", "https://", "data:")):
+        return path
+    mime = mimetypes.guess_type(path)[0] or "application/octet-stream"
+    with open(path, "rb") as f:
+        return f"data:{mime};base64," + base64.b64encode(f.read()).decode()
 
 
 def download(url, dest):
@@ -89,8 +102,12 @@ def download(url, dest):
 def main():
     load_env(os.path.join(HERE, ".env"))
     p = argparse.ArgumentParser()
-    p.add_argument("--workflow", default="minimax_h3_lightx2v_no_pic", help="工作流 uuid")
+    p.add_argument("--workflow", default="minimax_h3_lightx2v_v5", help="工作流 uuid")
     p.add_argument("--prompt", required=True)
+    p.add_argument("--image", action="append", default=[], metavar="PATH",
+                   help="参考图，可重复，按输入规则里的图片字段顺序填入")
+    p.add_argument("--file", action="append", default=[], metavar="KEY=PATH",
+                   help="指定字段的媒体文件，如 ref_audio_0=a.mp3")
     p.add_argument("--duration", type=int)
     p.add_argument("--resolution")
     p.add_argument("--seed", type=int)
@@ -118,6 +135,14 @@ def main():
         resolution = cheap[0] if cheap else None
 
     overrides = {"prompt": a.prompt}
+    image_fields = [n for n, r in rules.items() if r.get("type") == "image"]
+    if len(a.image) > len(image_fields):
+        raise SystemExit(f"该工作流最多 {len(image_fields)} 张图，收到 {len(a.image)} 张")
+    for name, path in zip(image_fields, a.image):
+        overrides[name] = media_value(path)
+    for item in a.file:
+        k, path = item.split("=", 1)
+        overrides[k] = media_value(path)
     for key, val in (("duration", a.duration), ("resolution", resolution), ("seed", a.seed)):
         if val is not None:
             overrides[key] = val
