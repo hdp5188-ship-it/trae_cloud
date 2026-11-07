@@ -56,8 +56,10 @@ def upload(src, name, kind):
 cover = upload('assets/t1-cover.jpg', 't1-cover.jpg', 'thumb')
 
 for src, name in [('assets/t1-score.jpg', 't1-score.jpg'),
+                  ('assets/faker2.jpg', 't1-faker2.jpg'),
                   ('assets/team1.jpg', 't1-team.jpg'),
-                  ('assets/t1-semis.jpg', 't1-semis.jpg')]:
+                  ('assets/t1-semis.jpg', 't1-semis.jpg'),
+                  ('assets/faker5.jpg', 't1-faker5.jpg')]:
     if src not in body:
         print('WARN not referenced:', src)
         continue
