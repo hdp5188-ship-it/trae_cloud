@@ -1,0 +1,83 @@
+[
+  {
+    "image_name": "S02_lion_silhouette_mound.jpg",
+    "prompt": "日出时分，一头深色鬃毛的成年雄狮伫立在白蚁丘顶端，初升的太阳正好在它身后形成逆光金边，风吹动鬃毛，脚下草原一望无际，雄狮威严地环视领地。镜头从低角度缓慢上摇，小幅幅度，慢速。[Tilt up with small amplitude at slow speed] 写实野生动物纪录片风格，无文字、无水印。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261110,
+    "prefix": "lion/S02"
+  },
+  {
+    "image_name": "S03_lion_eyes_closeup.jpg",
+    "prompt": "成年雄狮面部大特写，琥珀色眼睛虹膜纹理清晰，胡须上挂着晨露，它缓慢将头转向镜头，浓密鬃毛从画面前景拂过，背景是虚化的金色光斑。镜头围绕狮脸缓慢弧形移动，小幅幅度，慢速。[Arc shot with small amplitude at slow speed] 微距写实质感，无文字、无水印。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261111,
+    "prefix": "lion/S03"
+  },
+  {
+    "image_name": "S04_pride_walking.jpg",
+    "prompt": "逆光晨光中，三头母狮带领四只幼狮穿过高高的金色草丛，狮群剪影在草浪间时隐时现，幼狮蹦跳跟随，阳光扫过镜头形成光晕。镜头与狮群同速横向跟随，慢速。[Truck right at slow speed] 写实野生动物纪录片风格，无文字、无水印、无人类。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261112,
+    "prefix": "lion/S04"
+  },
+  {
+    "image_name": "S05_lioness_stalking.jpg",
+    "prompt": "低角度画面中，一头母狮压低身体贴草潜行，肌肉紧绷，眼神锁定前方远处河边的角马群，前景虚化的草叶在风中晃动，它一步一步无声前进。镜头与母狮平行缓慢横移，小幅幅度，慢速。[Tracking shot with small amplitude at slow speed] 午后自然光，浅景深，写实纪录片质感，无文字、无水印。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261113,
+    "prefix": "lion/S05"
+  },
+  {
+    "image_name": "S06_the_chase.jpg",
+    "prompt": "角马群四散奔逃，尘土冲天，金色尘雾中一头母狮全速冲刺扑向猎物，扬起一路尘烟，动作猛烈，光线为清晨金色阳光，写实野生动物纪录片风格。镜头快速跟随母狮奔跑方向移动，大幅幅度，快速。[Tracking shot with large amplitude at fast speed] 无文字、无水印、无人类。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261114,
+    "prefix": "lion/S06"
+  },
+  {
+    "image_name": "S07_cubs_playing.jpg",
+    "prompt": "柔和的午后暖光下，两只毛茸茸的幼狮互相扑打嬉闹，其中一只咬住母狮尾巴翻滚，母狮低头温柔舔舐幼崽，背景虚化，画面温馨柔软。镜头保持静止微距拍摄，小幅幅度，慢速。[Static shot with small amplitude at slow speed] 浅景深，写实纪录片质感，无文字、无水印。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261115,
+    "prefix": "lion/S07"
+  },
+  {
+    "image_name": "S08_hyena_confrontation.jpg",
+    "prompt": "暮色深蓝光线下，一群斑鬣狗压低头颅逼近狮群边缘，一头巨大雄狮缓缓起身、向前跨步发出低沉咆哮，鬣狗群纷纷后退散开，空气中有浮尘，气氛紧张。镜头以低角度仰拍雄狮并缓慢推近，小幅幅度，慢速。[Push in with small amplitude at slow speed] 写实野生动物纪录片质感，无文字、无水印。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261116,
+    "prefix": "lion/S08"
+  },
+  {
+    "image_name": "S09_sunset_family.jpg",
+    "prompt": "血红色残阳下的草原，狮群依偎着卧在白蚁丘旁呈剪影，一只幼狮钻进母狮怀里，雄狮坐立远眺天际线，风吹动草丛，气氛安详。镜头缓慢推近狮群，小幅幅度，慢速。[Push in with small amplitude at slow speed] 暖红琥珀色天空，写实纪录片质感，无文字、无水印。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 8,
+    "seed": 20261117,
+    "prefix": "lion/S09"
+  },
+  {
+    "image_name": "S10_starlight_roar.jpg",
+    "prompt": "银河横贯夜空的塞伦盖蒂，成年雄狮立于白蚁丘顶端呈剪影，仰头发出绵长的咆哮，镜头持续拉远并升高，雄狮渐渐变成浩瀚星空下的一个小小剪影，无边草原延伸至地平线，深蓝银色星光，史诗感。镜头持续拉远升空，大幅幅度，慢速。[Pull out with large amplitude at slow speed] 写实夜景摄影质感，无文字、无水印、无人类。",
+    "width": 1152,
+    "height": 640,
+    "seconds": 10,
+    "seed": 20261118,
+    "prefix": "lion/S10"
+  }
+]

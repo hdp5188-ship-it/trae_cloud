@@ -1,0 +1,9 @@
+{
+  "image_name": "S01_dawn_savanna.jpg",
+  "prompt": "非洲塞伦盖蒂草原黎明大远景，低空金色晨雾贴着草地缓缓流动，金合欢树呈黑色剪影，地平线泛起第一道橙红色光，远处一小群角马缓慢移动，光线呈体积感，BBC 自然纪录片质感，电影级画面。镜头缓慢向前推近，小幅幅度，慢速。[Push in with small amplitude at slow speed] 无文字、无水印、无人类。",
+  "width": 1152,
+  "height": 640,
+  "seconds": 8,
+  "seed": 20261109,
+  "prefix": "lion/S01"
+}
