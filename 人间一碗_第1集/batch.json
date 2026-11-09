@@ -1,0 +1,92 @@
+[
+  {
+    "image_name": "kitchen.jpg",
+    "prompt": "镜头从中央厨房的不锈钢汤桶缓慢向前推进，白色蒸汽不断升腾，冷白日光灯轻微闪烁，画面无人，压抑、工业感。不要字幕，不要文字，只要现场环境声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110901,
+    "prefix": "ep1_01_kitchen"
+  },
+  {
+    "image_name": "linwan.jpg",
+    "prompt": "参考首帧中的林晚，她舀起一勺乳白汤底，凑近闻，眉头慢慢皱紧，眼神从疑惑变成失望；镜头轻微推近，蒸汽在脸前飘过。不要字幕，不要文字，现场环境声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110902,
+    "prefix": "ep1_02_linwan_taste"
+  },
+  {
+    "image_name": "xiaozhou.jpg",
+    "prompt": "参考首帧中的小周，他向左靠近画面，压低声音对旁边的人说话，神情紧张局促；镜头轻微右移，背景是冒热气的汤桶。不要字幕，不要文字，中文现场同期声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110903,
+    "prefix": "ep1_03_xiaozhou"
+  },
+  {
+    "image_name": "press.jpg",
+    "prompt": "发布会宴会厅全景，镜头缓慢向前推进，LED大屏亮起，台下记者席闪光灯接连亮起，台上灯光渐亮，气氛隆重而冰冷。不要字幕，不要文字，现场环境声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110904,
+    "prefix": "ep1_04_press"
+  },
+  {
+    "image_name": "suman.jpg",
+    "prompt": "参考首帧中的苏蔓，她举起玻璃杯向台下致意，嘴角带笑，闪光灯在她脸上连成一片；镜头极缓慢推近，白裙在灯下泛冷光。不要字幕，不要文字，现场环境声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110905,
+    "prefix": "ep1_05_suman_toast"
+  },
+  {
+    "image_name": "chenqiming.jpg",
+    "prompt": "参考首帧中的陈启明，他站在台侧，侧头压低声音说话，眼神躲闪、疲惫，手指不安地整理领带；镜头轻微推近。不要字幕，不要文字，中文现场同期声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110906,
+    "prefix": "ep1_06_chen"
+  },
+  {
+    "image_name": "linwan_press.jpg",
+    "prompt": "参考首帧中的林晚，她从台下第一排缓缓站起，抬头看向台上，眼神从犹豫变得坚定，深吸一口气；镜头缓慢推近到她的脸，闪光灯在背景闪烁。不要字幕，不要文字。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110907,
+    "prefix": "ep1_07_linwan_stand"
+  },
+  {
+    "image_name": "suman_stop.jpg",
+    "prompt": "参考首帧中的苏蔓，她慢慢放下手里的玻璃杯，脸上的笑容一点点消失，眼神变冷，直视前方；背景闪光灯继续闪烁。不要字幕，不要文字，现场环境声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110908,
+    "prefix": "ep1_08_suman_cold"
+  },
+  {
+    "image_name": "linwan_street.jpg",
+    "prompt": "参考首帧中的林晚，她抱着纸箱从写字楼玻璃门里走出来，停下脚步，风吹动头发，她抬头看了一眼阴沉的天空；镜头从侧后方缓慢跟拍。不要字幕，不要文字，城市环境声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110909,
+    "prefix": "ep1_09_street"
+  },
+  {
+    "image_name": "phone.jpg",
+    "prompt": "参考首帧中的双手，手机屏幕在掌心亮起，冷白光照亮手指，她的手指一点点收紧，背景玻璃门外的城市虚化；镜头极缓慢推近屏幕。不要字幕，不要文字，现场环境声。",
+    "width": 640,
+    "height": 1152,
+    "seconds": 8,
+    "seed": 2026110910,
+    "prefix": "ep1_10_phone"
+  }
+]
