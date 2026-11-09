@@ -7,7 +7,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Noto Sans CJK SC,42,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,1,0,1,3,1,2,60,60,170,1
+Style: Default,Noto Sans CJK SC,40,&H00FFFFFF,&H000000FF,&H00000000,&H90000000,-1,0,0,0,100,100,1,0,1,3,1,2,56,56,160,1
 Style: Title,Noto Serif CJK SC,62,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,-1,0,0,0,100,100,3,0,1,4,0,2,40,40,430,1
 Style: Small,Noto Sans CJK SC,30,&H00E8E8E8,&H000000FF,&H00000000,&H80000000,0,0,0,0,100,100,2,0,1,2,1,2,80,80,150,1
 
@@ -16,12 +16,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.50,0:00:04.20,Title,,0,0,0,,人间一碗
 Dialogue: 0,0:00:00.80,0:00:04.20,Small,,0,0,0,,第 1 集
 Dialogue: 0,0:00:04.40,0:00:08.00,Default,,0,0,0,,味知集团 · 中央厨房
-Dialogue: 0,0:00:08.50,0:00:16.00,Default,,0,0,0,,林晚（心声）：这不是熬出来的汤。
-Dialogue: 0,0:00:16.50,0:00:24.00,Default,,0,0,0,,小周：晚姐，别声张，苏总在楼上。
+Dialogue: 0,0:00:08.50,0:00:12.20,Default,,0,0,0,,林晚（心声）：这不是汤。这是盐加香精。
+Dialogue: 0,0:00:16.30,0:00:23.20,Default,,0,0,0,,小周：林姐，十点发布会，苏总交代了，用这个。
 Dialogue: 0,0:00:24.50,0:00:32.00,Default,,0,0,0,,三小时后 · 新品发布会
-Dialogue: 0,0:00:32.50,0:00:40.00,Default,,0,0,0,,苏蔓：味知，让每个家都喝上熬了八小时的汤。
-Dialogue: 0,0:00:40.50,0:00:48.00,Default,,0,0,0,,陈启明：林晚，坐下，别毁了自己。
-Dialogue: 0,0:00:48.50,0:00:56.00,Default,,0,0,0,,林晚：我们的汤，是料理包。
-Dialogue: 0,0:00:56.50,0:01:04.00,Default,,0,0,0,,苏蔓：林晚，你被停职了。
-Dialogue: 0,0:01:04.50,0:01:12.00,Default,,0,0,0,,当天下午 · 人事部
-Dialogue: 0,0:01:12.50,0:01:20.00,Default,,0,0,0,,短信：你老公今晚八点，云顶酒店1808。
+Dialogue: 0,0:00:32.30,0:00:37.60,Default,,0,0,0,,苏蔓：我们做的不是生意，是每个中国人记忆里的那碗汤。
+Dialogue: 0,0:00:40.30,0:00:44.80,Default,,0,0,0,,陈启明：林晚，说设备调试失误。听见没有？
+Dialogue: 0,0:00:48.30,0:00:55.70,Default,,0,0,0,,记者：苏总，有员工爆料，贵司汤底全部使用浓缩料理包。
+Dialogue: 0,0:00:56.30,0:01:00.40,Default,,0,0,0,,苏蔓：这个问题，我们请研发主厨林晚来回答。
+Dialogue: 0,0:01:00.80,0:01:05.00,Default,,0,0,0,,林晚：记者说得对。我们的汤，是料理包。
+Dialogue: 0,0:01:07.00,0:01:09.90,Default,,0,0,0,,苏蔓：林晚，你被停职了。
+Dialogue: 0,0:01:12.40,0:01:19.60,Default,,0,0,0,,短信：你老公今晚八点，云顶酒店1808。
