@@ -1,0 +1,8 @@
+[
+  {"image_name": "laozhao.jpg", "prompt": "参考首帧中的老赵，他熟练地撕开银色料理包，把浓稠酱料挤进不锈钢盆，动作麻木，蒸汽升起；镜头缓慢推近。不要字幕，不要文字，现场环境声。", "width": 640, "height": 1152, "seconds": 8, "seed": 2026110911, "prefix": "ep1b_01_laozhao"},
+  {"image_name": "packet.jpg", "prompt": "参考首帧，酱色汤汁从银色料理包挤进白瓷碗，蒸汽持续升腾，旁边老砂锅的汤在翻滚；镜头极缓慢推近，画面写实压抑。不要字幕，不要文字，现场环境声。", "width": 640, "height": 1152, "seconds": 8, "seed": 2026110912, "prefix": "ep1b_02_packet"},
+  {"image_name": "reporters.jpg", "prompt": "参考首帧，发布会现场记者群举起话筒和手向前挤，闪光灯连续爆闪，人群躁动，镜头轻微手持晃动。不要字幕，不要文字，现场环境声。", "width": 640, "height": 1152, "seconds": 8, "seed": 2026110913, "prefix": "ep1b_03_reporters"},
+  {"image_name": "suman.jpg", "prompt": "参考首帧中的苏蔓，她从容地举起玻璃杯向台下示意，嘴角带笑，闪光灯连闪，气场强势；镜头缓慢推近。不要字幕，不要文字，现场环境声。", "width": 640, "height": 1152, "seconds": 8, "seed": 2026110914, "prefix": "ep1b_04_suman_save"},
+  {"image_name": "linwan_press.jpg", "prompt": "参考首帧中的林晚，她低下头，双手摘下胸前的工牌，轻轻放在演讲台上，然后抬头直视前方，眼神决绝；镜头轻微推近。不要字幕，不要文字，现场环境声。", "width": 640, "height": 1152, "seconds": 8, "seed": 2026110915, "prefix": "ep1b_05_badge"},
+  {"image_name": "hotel.jpg", "prompt": "参考首帧，陈启明搂着穿米色风衣的年轻女人走向电梯，脚步不停；远处抱纸箱的林晚停下脚步，背影僵住，水晶灯下人影拉长；镜头缓慢横移。不要字幕，不要文字，环境声。", "width": 640, "height": 1152, "seconds": 8, "seed": 2026110916, "prefix": "ep1b_06_hotel"}
+]
